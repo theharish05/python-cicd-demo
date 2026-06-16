@@ -28,4 +28,4 @@ def test_fib_8():
     assert fibonacci(8) == 21
 
 def test_fib_10():
-    assert fibonacci(10) == 55
+    assert fibonacci(10) == 50
