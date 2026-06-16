@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -29,7 +29,6 @@ jobs:
 
   deploy:
     needs: test
-
     runs-on: ubuntu-latest
 
     steps:
@@ -43,5 +42,13 @@ jobs:
 
           script: |
             cd ~/python-cicd-demo
+
             git pull origin main
-            echo "Deployment completed"
+
+            source venv/bin/activate
+
+            pip install -r requirements.txt
+
+            pkill -f appy.py || true
+
+            nohup python3 appy.py > app.log 2>&1 &
